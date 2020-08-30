@@ -5,7 +5,7 @@
 //	Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
 //	La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 //	Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
-var bombe = 16;
+
 //	funzione che genera un numero casuale tra 1 e 100
 function numberRandom (min, max) {
 	var numRandom = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -20,12 +20,13 @@ function checkDoppione (arr, numero) {
 	}
 	return false;
 }
+// Numero Bome - MODIFICABILE
+var bombe = 16;
 //	creo variabile array che contiene i numeri bomba
 var arrBomba = [];
+// Array tentativi
 var arrTentativi = [];
-//	ciclo che chiama la mia funzione di generazione dei numeri 16 volte  while(i<bombe)
-    //	check che il numero non sia duplicato
-    //	se non è duplicato, lo salvo nell'array bombe
+// Riempo l'arrBomba con le mie bombe univoche
 for (var i = 0; i < bombe; i++) {
 	var numeroBombaProvv = numberRandom(1, 100);
 	while (checkDoppione(arrBomba, numeroBombaProvv)) {
@@ -33,10 +34,12 @@ for (var i = 0; i < bombe; i++) {
 	}
 	arrBomba.push(numeroBombaProvv);
 }
+// Stampo per controllo e per i prof
 console.log(arrBomba);
 // variabili booleana haPerso = false
 var haiPerso = false;
 // imposto il livello e i tentativi
+alert('Benvenuto!! Stai per entrare nel Campo Minato! \n 1) Scegli un livello di difficoltà \n 2) Inserisci un numero da 1 a 100 e spera di non pestare una Bomba' )
 var maxTentativiBombe = parseInt(prompt('Inserisci la difficolta(0/1/2)'));
 while (!((maxTentativiBombe - 0) * (maxTentativiBombe - 2) <= 0)) {
 	maxTentativiBombe = parseInt(prompt('Inserisci la difficolta(0/1/2)'));
@@ -77,7 +80,7 @@ do {
 
 // Comunico il risultato al giocatore
 if (haiPerso) {
-	alert('Hai perso, i tuoi tentativi sono stati ' + arrTentativi.length + '!');
+	alert('BOOOOOOOOOOM Hai perso, i tuoi tentativi sono stati ' + arrTentativi.length + '!');
 } else {
 	alert('HAI VINTO!! i tuoi tentativi sono stati ' + arrTentativi.length + '!');
 }
